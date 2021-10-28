@@ -13,7 +13,7 @@ from app.src.utils import calculate_avg_rating
 
 
 def calc_avg_rating(reviews: t.List[Review]) -> t.Mapping[str, float]:
-    if reviews == {}: #check the reviews if it is empty
+    if (len(reviews) == 0): #check the reviews if it is empty
         return {} 
 
     review_R: dict[str, list[Review]] = {}  # set up two lists
@@ -22,7 +22,7 @@ def calc_avg_rating(reviews: t.List[Review]) -> t.Mapping[str, float]:
     for review in reviews:
         if review_R.get(review.restaurant) is None:
             review_R[review.restaurant] = [review]            
-        elif review_R.get(review.restaurant) is not None:
+        else review_R.get(review.restaurant) is not None:
                 review_R.get(review.restaurant).append(review)
 
     for restaurant, reviews in review_R.items():
